@@ -362,3 +362,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 .vscode/settings.json
+
+# WebExtension build artifacts
+*.xpi
+WebExtensions/**/web-ext-artifacts/
+WebExtensions/**/dist/
+WebExtensions/**/node_modules/
