@@ -1,0 +1,73 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-release:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+        with:
+          nuget-version: '6.x'
+
+      - name: NuGet Restore
+        run: nuget restore Tai.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release
+        run: msbuild Tai.sln /p:Configuration=Release /p:Platform="Any CPU" /m /v:minimal
+
+      - name: Package Release Zip
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $zipName = "retai-$tag-win-x64.zip"
+          $staging = "retai-staging"
+          New-Item -ItemType Directory -Path $staging -Force
+
+          # Copy main application (UI is the startup project)
+          Copy-Item -Path "UI/bin/Release/*" -Destination $staging -Recurse -Force
+          # Ensure Core DLL is included
+          if (Test-Path "Core/bin/Release/Core.dll") {
+            Copy-Item -Path "Core/bin/Release/Core.dll" -Destination $staging -Force
+          }
+          # Copy TaiBug
+          if (Test-Path "TaiBug/bin/Release") {
+            Copy-Item -Path "TaiBug/bin/Release/TaiBug.exe" -Destination $staging -Force -ErrorAction SilentlyContinue
+          }
+          # Copy Updater
+          if (Test-Path "Updater/bin/Release") {
+            Copy-Item -Path "Updater/bin/Release/Updater.exe" -Destination $staging -Force -ErrorAction SilentlyContinue
+            Copy-Item -Path "Updater/bin/Release/Newtonsoft.Json.dll" -Destination $staging -Force -ErrorAction SilentlyContinue
+          }
+
+          # Remove unnecessary files
+          Get-ChildItem -Path $staging -Include *.pdb,*.xml -Recurse | Remove-Item -Force
+          Remove-Item -Path "$staging/*.config" -Force -ErrorAction SilentlyContinue
+
+          Compress-Archive -Path "$staging/*" -DestinationPath $zipName -Force
+
+          # Generate SHA256
+          $hash = (Get-FileHash $zipName -Algorithm SHA256).Hash
+          "$hash  $zipName" | Out-File -Encoding ascii -FilePath "SHA256SUMS.txt"
+
+          Write-Host "Created $zipName"
+          Get-ChildItem $zipName, SHA256SUMS.txt
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            retai-*.zip
+            SHA256SUMS.txt
+          fail_on_unmatched_files: true
