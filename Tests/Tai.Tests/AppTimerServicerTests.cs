@@ -284,9 +284,14 @@ namespace Tai.Tests
 
             var baseTime = new DateTime(2025, 6, 15, 10, 0, 0);
 
-            // App A at t=0, App B at t=1s — both in order
+            // App A at t=0 — timer starts
             RaiseAppActiveChanged(observerMock, MakeAppInfo("appA"), baseTime);
-            RaiseAppActiveChanged(observerMock, MakeAppInfo("appB"), baseTime.AddSeconds(1));
+
+            // Wait for at least one timer tick (1s interval)
+            Thread.Sleep(1500);
+
+            // App B at t=1.5s — switch should emit duration for App A
+            RaiseAppActiveChanged(observerMock, MakeAppInfo("appB"), baseTime.AddSeconds(2));
 
             // The switch from A to B should emit a duration event
             Assert.Equal(1, eventCount);
