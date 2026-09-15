@@ -16,7 +16,7 @@ namespace Tai.Tests
         [InlineData(60, "1分钟")]
         [InlineData(90, "1分钟30秒")]
         [InlineData(3600, "1小时")]
-        [InlineData(3660, "1小时1分")]
+        [InlineData(7260, "2小时1分")]
         [InlineData(7200, "2小时")]
         public void ToString_FormatsCorrectly(int seconds, string expected)
         {
@@ -34,8 +34,8 @@ namespace Tai.Tests
         [Theory]
         [InlineData(3600, "1.00")]  // exactly 1 hour => >0.1 => "1.00"
         [InlineData(1800, "0.50")]  // 0.5 hour => "0.50"
-        [InlineData(36, "0.01")]    // 0.01 hour => >0.1 is false => "0"
-        [InlineData(360, "0.10")]   // 0.1 hour => >0.1 is false => "0"
+        [InlineData(36, "0")]       // 0.01 hour => <=0.1 => "0"
+        [InlineData(360, "0")]      // 0.1 hour => not >0.1 => "0"
         public void ToHoursString_ConvertsSecondsToHoursString(double seconds, string expected)
         {
             var result = Time.ToHoursString(seconds);

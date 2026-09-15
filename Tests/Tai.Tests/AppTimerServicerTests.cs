@@ -35,12 +35,12 @@ namespace Tai.Tests
 
         /// <summary>
         /// Helper: raise the OnAppActiveChanged event on a mock IAppObserver.
-        /// Uses reflection because the event is on the interface and the mock
-        /// needs to raise it with specific args.
+        /// Moq's Raise requires (sender, eventArgs) matching the delegate signature.
         /// </summary>
         private static void RaiseAppActiveChanged(Mock<IAppObserver> mock, AppInfo app, DateTime activeTime)
         {
-            mock.Raise(m => m.OnAppActiveChanged += null, new AppActiveChangedEventArgs(app, MakeWindowInfo(), activeTime));
+            var args = new AppActiveChangedEventArgs(app, MakeWindowInfo(), activeTime);
+            mock.Raise(m => m.OnAppActiveChanged += null, mock.Object, args);
         }
 
         [Fact]
