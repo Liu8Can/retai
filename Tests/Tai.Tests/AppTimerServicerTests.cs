@@ -2,11 +2,11 @@ using Core.Enums;
 using Core.Event;
 using Core.Models.AppObserver;
 using Core.Servicers.Instances;
+using Core.Servicers.Interfaces;
 using Moq;
 using System;
 using System.Threading;
 using Xunit;
-using System.Reflection;
 
 namespace Tai.Tests
 {
