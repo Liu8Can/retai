@@ -45,14 +45,49 @@ namespace Core.Librarys.SQLite
         public DbSet<WebUrlModel> WebUrls { get; set; }
 
         private static string _dbFilePath = Path.Combine(FileHelper.GetRootDirectory(), "Data", "data.db");
+        private static bool _walInitialized = false;
+        private static readonly object _walLock = new object();
+
         public TaiDbContext()
        : base(new SQLiteConnection()
        {
            ConnectionString = $"Data Source={_dbFilePath}",
-           BusyTimeout = 60
+           BusyTimeout = 5000
        }, true)
         {
             DbConfiguration.SetConfiguration(new SQLiteConfiguration());
+            EnsureWalMode();
+        }
+
+        /// <summary>
+        /// Enables WAL journal mode once per process. WAL allows concurrent
+        /// readers and writers, eliminating the "database is locked" crashes
+        /// (upstream issue #223). Uses a static flag so the PRAGMA only fires
+        /// on the first connection.
+        /// </summary>
+        private void EnsureWalMode()
+        {
+            if (_walInitialized) return;
+            lock (_walLock)
+            {
+                if (_walInitialized) return;
+                try
+                {
+                    Database.Connection.Open();
+                    using (var cmd = Database.Connection.CreateCommand())
+                    {
+                        cmd.CommandText = "PRAGMA journal_mode=WAL;";
+                        cmd.ExecuteNonQuery();
+                    }
+                    Database.Connection.Close();
+                    _walInitialized = true;
+                }
+                catch
+                {
+                    // Non-fatal: if WAL setup fails (e.g. read-only media),
+                    // fall back to default journal mode.
+                }
+            }
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
