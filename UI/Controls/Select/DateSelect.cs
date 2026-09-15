@@ -153,6 +153,7 @@ namespace UI.Controls.Select
         public Command SetYearCommand { get; set; }
         public Command SetMonthCommand { get; set; }
         public Command DoneCommand { get; set; }
+        public Command SwitchDateCommand { get; set; }
 
         private bool IsFirstClick = false;
         private Border SelectContainer;
@@ -165,6 +166,7 @@ namespace UI.Controls.Select
             SetYearCommand = new Command(new Action<object>(OnSetYear));
             SetMonthCommand = new Command(new Action<object>(OnSetMonth));
             DoneCommand = new Command(new Action<object>(OnDone));
+            SwitchDateCommand = new Command(new Action<object>(OnSwitchDate));
 
 
             Year = Date.Year;
@@ -247,6 +249,39 @@ namespace UI.Controls.Select
             UpdateDateStr();
 
             IsOpen = false;
+        }
+
+        private void OnSwitchDate(object obj)
+        {
+            int offset = int.Parse(obj.ToString());
+            DateTime currentDate = Day != null ? Day.Day : new DateTime(Year, Month, 1);
+
+            DateTime newDate;
+            if (SelectType == DateSelectType.Day)
+            {
+                newDate = currentDate.AddDays(offset);
+            }
+            else if (SelectType == DateSelectType.Month)
+            {
+                newDate = currentDate.AddMonths(offset);
+            }
+            else
+            {
+                newDate = currentDate.AddYears(offset);
+            }
+
+            if (newDate.Year < 2020 || newDate.Date > DateTime.Now.Date)
+            {
+                return;
+            }
+
+            Year = newDate.Year;
+            Month = newDate.Month;
+            Date = newDate;
+            SelectedDay = newDate.Date;
+
+            UpdateDays();
+            UpdateDateStr();
         }
 
         private void OnSetMonth(object obj)
