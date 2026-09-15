@@ -1,0 +1,45 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+        with:
+          nuget-version: '6.x'
+
+      - name: NuGet Restore
+        run: nuget restore Tai.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Solution
+        run: msbuild Tai.sln /p:Configuration=${{ matrix.configuration }} /p:Platform="Any CPU" /m /v:minimal
+
+      - name: Upload Build Artifacts
+        if: matrix.configuration == 'Release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: retai-release-bin
+          path: |
+            UI/bin/Release/
+            Core/bin/Release/
+            TaiBug/bin/Release/
+            Updater/bin/Release/
+          retention-days: 7
