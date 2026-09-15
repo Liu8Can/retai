@@ -68,8 +68,8 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Build Core (Dependency)
-        run: msbuild Core\Core.csproj /p:Configuration=Debug /p:Platform="Any CPU" /m /v:minimal
+      - name: Build Solution (Debug)
+        run: msbuild Tai.sln /p:Configuration=Debug /p:Platform="AnyCPU" /m /v:minimal
 
       - name: Build and Run Tests
-        run: dotnet test Tests/Tai.Tests/Tai.Tests.csproj --configuration Debug --logger "console;verbosity=detailed"
+        run: dotnet test Tests/Tai.Tests/Tai.Tests.csproj --configuration Debug --no-build --logger "console;verbosity=detailed"
