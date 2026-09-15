@@ -50,22 +50,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
       - name: Setup NuGet
         uses: nuget/setup-nuget@v2
         with:
           nuget-version: '6.x'
 
-      - name: NuGet Restore
-        run: nuget restore Tai.sln
+      - name: Restore Solution
+        run: |
+          nuget restore Tai.sln
+          dotnet restore Tests/Tai.Tests/Tai.Tests.csproj
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Build Test Project
-        run: msbuild Tests\Tai.Tests\Tai.Tests.csproj /p:Configuration=Debug /p:Platform="Any CPU" /m /v:minimal
+      - name: Build Core (Dependency)
+        run: msbuild Core\Core.csproj /p:Configuration=Debug /p:Platform="Any CPU" /m /v:minimal
 
-      - name: Setup VSTest
-        uses: darenm/Setup-VSTest@v2
-
-      - name: Run Tests
-        run: vstest.console.exe /Logger:console Tests\Tai.Tests\bin\Debug\Tai.Tests.dll
+      - name: Build and Run Tests
+        run: dotnet test Tests/Tai.Tests/Tai.Tests.csproj --configuration Debug --logger "console;verbosity=detailed"
