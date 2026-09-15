@@ -368,7 +368,7 @@ namespace Core.Servicers.Instances
                 using (var db = _database.GetWriterContext())
                 {
                     //  取消网站关联分类
-                    db.Database.ExecuteSqlCommand("update WebSiteModels set CategoryID=0 where CategoryID=" + data_.ID);
+                    db.Database.ExecuteSqlCommand("update WebSiteModels set CategoryID=0 where CategoryID=@p0", data_.ID);
 
                     //  删除分类
                     db.Entry(data_).State = System.Data.Entity.EntityState.Deleted;
@@ -427,8 +427,10 @@ namespace Core.Servicers.Instances
             {
                 using (var db = _database.GetWriterContext())
                 {
-                    string sql = $"update WebSiteModels set CategoryID={categoryId_} where ID in ({string.Join(",", siteIds_)})";
-                    db.Database.ExecuteSqlCommand(sql);
+                    var idPlaceholders = string.Join(",", siteIds_.Select((_, i) => "@p" + (i + 1)));
+                    var parameters = new List<object> { categoryId_ };
+                    parameters.AddRange(siteIds_.Cast<object>());
+                    db.Database.ExecuteSqlCommand($"update WebSiteModels set CategoryID=@p0 where ID in ({idPlaceholders})", parameters.ToArray());
                     db.SaveChanges();
                     _database.CloseWriter();
                 }
@@ -439,13 +441,13 @@ namespace Core.Servicers.Instances
         {
             using (var db = _database.GetReaderContext())
             {
-                var sql = "select sum(WebBrowseLogModels.Duration) as Value,WebSiteCategoryModels.ID as ID,WebSiteCategoryModels.Name as Name from WebBrowseLogModels join WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID JOIN WebSiteCategoryModels on WebSiteModels.CategoryID=WebSiteCategoryModels.ID WHERE WebBrowseLogModels.LogTime>='" + start_.ToString("yyyy-MM-dd 00:00:00") + "' and WebBrowseLogModels.LogTime<= '" + end_.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY WebSiteCategoryModels.ID";
+                var sql = "select sum(WebBrowseLogModels.Duration) as Value,WebSiteCategoryModels.ID as ID,WebSiteCategoryModels.Name as Name from WebBrowseLogModels join WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID JOIN WebSiteCategoryModels on WebSiteModels.CategoryID=WebSiteCategoryModels.ID WHERE WebBrowseLogModels.LogTime>=@p0 and WebBrowseLogModels.LogTime<= @p1 GROUP BY WebSiteCategoryModels.ID";
 
-                var data = db.Database.SqlQuery<CommonDataModel>(sql).ToList();
+                var data = db.Database.SqlQuery<CommonDataModel>(sql, start_.Date, new DateTime(end_.Year, end_.Month, end_.Day, 23, 59, 59)).ToList();
                 //  未分类
 
-                sql = "select sum(WebBrowseLogModels.Duration) as Value,WebSiteModels.CategoryID as ID,WebSiteModels.Title as Name from WebBrowseLogModels left join WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID WHERE WebSiteModels.CategoryID=0 AND WebBrowseLogModels.LogTime>='" + start_.ToString("yyyy-MM-dd 00:00:00") + "' and WebBrowseLogModels.LogTime<= '" + end_.ToString("yyyy-MM-dd 23:59:59") + "' Group BY WebSiteModels.CategoryID";
-                var noCategoryData = db.Database.SqlQuery<CommonDataModel>(sql).ToList();
+                sql = "select sum(WebBrowseLogModels.Duration) as Value,WebSiteModels.CategoryID as ID,WebSiteModels.Title as Name from WebBrowseLogModels left join WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID WHERE WebSiteModels.CategoryID=0 AND WebBrowseLogModels.LogTime>=@p0 and WebBrowseLogModels.LogTime<= @p1 Group BY WebSiteModels.CategoryID";
+                var noCategoryData = db.Database.SqlQuery<CommonDataModel>(sql, start_.Date, new DateTime(end_.Year, end_.Month, end_.Day, 23, 59, 59)).ToList();
                 var result = data.Concat(noCategoryData).ToList();
                 return result;
             }
@@ -561,14 +563,14 @@ namespace Core.Servicers.Instances
                 var end = new DateTime(end_.Year, end_.Month, end_.Day, 23, 59, 59);
 
                 //  查询分类
-                var categorySql = "select sum(WebBrowseLogModels.Duration) as Duration,LogTime,WebSiteModels.CategoryID as CategoryID from WebBrowseLogModels LEFT JOIN WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID LEFT JOIN WebSiteCategoryModels on WebSiteModels.CategoryID=WebSiteCategoryModels.ID  WHERE LogTime>='" + start.ToString("yyyy-MM-dd 00:00:00") + "' and LogTime<= '" + end.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY WebSiteModels.CategoryID";
+                var categorySql = "select sum(WebBrowseLogModels.Duration) as Duration,LogTime,WebSiteModels.CategoryID as CategoryID from WebBrowseLogModels LEFT JOIN WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID LEFT JOIN WebSiteCategoryModels on WebSiteModels.CategoryID=WebSiteCategoryModels.ID  WHERE LogTime>=@p0 and LogTime<= @p1 GROUP BY WebSiteModels.CategoryID";
 
-                var categories = db.Database.SqlQuery<CategoryStatisticModel>(categorySql).ToList();
+                var categories = db.Database.SqlQuery<CategoryStatisticModel>(categorySql, start, end).ToList();
 
                 //  查询数据
-                var dataSql = "select sum(WebBrowseLogModels.Duration) as Duration,LogTime,WebSiteModels.CategoryID as CategoryID from WebBrowseLogModels LEFT JOIN WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID LEFT JOIN WebSiteCategoryModels on WebSiteModels.CategoryID=WebSiteCategoryModels.ID  WHERE LogTime>='" + start.ToString("yyyy-MM-dd 00:00:00") + "' and LogTime<= '" + end.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY WebBrowseLogModels.LogTime,WebSiteModels.CategoryID";
+                var dataSql = "select sum(WebBrowseLogModels.Duration) as Duration,LogTime,WebSiteModels.CategoryID as CategoryID from WebBrowseLogModels LEFT JOIN WebSiteModels on WebBrowseLogModels.SiteId=WebSiteModels.ID LEFT JOIN WebSiteCategoryModels on WebSiteModels.CategoryID=WebSiteCategoryModels.ID  WHERE LogTime>=@p0 and LogTime<= @p1 GROUP BY WebBrowseLogModels.LogTime,WebSiteModels.CategoryID";
 
-                var data = db.Database.SqlQuery<CategoryStatisticModel>(dataSql).ToList();
+                var data = db.Database.SqlQuery<CategoryStatisticModel>(dataSql, start, end).ToList();
                 var result = new List<ColumnDataModel>();
 
                 if (start_ == end_)
@@ -755,7 +757,7 @@ namespace Core.Servicers.Instances
             {
                 //db.Database.ExecuteSqlCommand("update WebSiteModels set Duration=0");
 
-                db.Database.ExecuteSqlCommand("delete from WebBrowseLogModels  where LogTime>='" + start_.Date.ToString("yyyy-MM-01 00:00:00") + "' and LogTime<= '" + end_.Date.ToString("yyyy-MM-dd 23:59:59") + "'");
+                db.Database.ExecuteSqlCommand("delete from WebBrowseLogModels  where LogTime>=@p0 and LogTime<= @p1", new DateTime(start_.Year, start_.Month, 1), new DateTime(end_.Year, end_.Month, end_.Day, 23, 59, 59));
             }
         }
 
@@ -812,8 +814,8 @@ namespace Core.Servicers.Instances
         {
             using (var db = _database.GetReaderContext())
             {
-                db.Database.ExecuteSqlCommand("delete from WebBrowseLogModels  where SiteId = " + siteId_);
-                db.Database.ExecuteSqlCommand("update WebSiteModels set Duration = 0  where ID = " + siteId_);
+                db.Database.ExecuteSqlCommand("delete from WebBrowseLogModels  where SiteId = @p0", siteId_);
+                db.Database.ExecuteSqlCommand("update WebSiteModels set Duration = 0  where ID = @p0", siteId_);
             }
         }
 

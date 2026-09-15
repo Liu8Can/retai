@@ -374,10 +374,10 @@ namespace Core.Servicers.Instances
 
 
                 //var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,HoursLogModels.DataTime as Time from HoursLogModels join AppModels on AppModels.ID=HoursLogModels.AppModelID where AppModels.CategoryID<>0 and HoursLogModels.DataTime>='" + date.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and HoursLogModels.DataTime<= '" + date.Date.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY AppModels.CategoryID,HoursLogModels.DataTime ").ToArray();
-                var categorys = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,HoursLogModels.DataTime as Time from HoursLogModels join AppModels on AppModels.ID=HoursLogModels.AppModelID where  HoursLogModels.DataTime>='" + date.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and HoursLogModels.DataTime<= '" + date.Date.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY AppModels.CategoryID ").OrderByDescending(m => m.CategoryID).ToArray();
+                var categorys = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,HoursLogModels.DataTime as Time from HoursLogModels join AppModels on AppModels.ID=HoursLogModels.AppModelID where  HoursLogModels.DataTime>=@p0 and HoursLogModels.DataTime<= @p1 GROUP BY AppModels.CategoryID ", date.Date, new DateTime(date.Year, date.Month, date.Day, 23, 59, 59)).OrderByDescending(m => m.CategoryID).ToArray();
 
 
-                var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,HoursLogModels.DataTime as Time from HoursLogModels join AppModels on AppModels.ID=HoursLogModels.AppModelID where  HoursLogModels.DataTime>='" + date.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and HoursLogModels.DataTime<= '" + date.Date.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY AppModels.CategoryID,HoursLogModels.DataTime ").ToArray();
+                var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,HoursLogModels.DataTime as Time from HoursLogModels join AppModels on AppModels.ID=HoursLogModels.AppModelID where  HoursLogModels.DataTime>=@p0 and HoursLogModels.DataTime<= @p1 GROUP BY AppModels.CategoryID,HoursLogModels.DataTime ", date.Date, new DateTime(date.Year, date.Month, date.Day, 23, 59, 59)).ToArray();
 
                 List<ColumnDataModel> list = new List<ColumnDataModel>();
                 foreach (var category in categorys)
@@ -416,10 +416,10 @@ namespace Core.Servicers.Instances
 
 
                 //var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where AppModels.CategoryID<>0 and DailyLogModels.Date>='" + start.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DailyLogModels.Date<= '" + end.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY AppModels.CategoryID,DailyLogModels.Date ").ToArray();
-                var categorys = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where  DailyLogModels.Date>='" + start.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DailyLogModels.Date<= '" + end.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY AppModels.CategoryID").OrderByDescending(m => m.CategoryID).ToArray();
+                var categorys = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where  DailyLogModels.Date>=@p0 and DailyLogModels.Date<= @p1 GROUP BY AppModels.CategoryID", start.Date, end.Date).OrderByDescending(m => m.CategoryID).ToArray();
 
 
-                var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where  DailyLogModels.Date>='" + start.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DailyLogModels.Date<= '" + end.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY AppModels.CategoryID,DailyLogModels.Date ").ToArray();
+                var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where  DailyLogModels.Date>=@p0 and DailyLogModels.Date<= @p1 GROUP BY AppModels.CategoryID,DailyLogModels.Date ", start.Date, end.Date).ToArray();
 
                 var ts = end - start;
                 var days = ts.TotalDays + 1;
@@ -470,10 +470,10 @@ namespace Core.Servicers.Instances
 
                 //var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where AppModels.CategoryID<>0 and DailyLogModels.Date>='" + dateArr[0].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DailyLogModels.Date<= '" + dateArr[1].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY AppModels.CategoryID,DailyLogModels.Date ").ToArray();
 
-                var categorys = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where  DailyLogModels.Date>='" + dateArr[0].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DailyLogModels.Date<= '" + dateArr[1].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY AppModels.CategoryID").OrderByDescending(m => m.CategoryID).ToArray();
+                var categorys = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where  DailyLogModels.Date>=@p0 and DailyLogModels.Date<= @p1 GROUP BY AppModels.CategoryID", dateArr[0].Date, dateArr[1].Date).OrderByDescending(m => m.CategoryID).ToArray();
 
 
-                var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where DailyLogModels.Date>='" + dateArr[0].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DailyLogModels.Date<= '" + dateArr[1].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY AppModels.CategoryID,DailyLogModels.Date ").ToArray();
+                var data = db.Database.SqlQuery<CategoryHoursDataModel>("select sum(Time) as Total,AppModels.CategoryID,DailyLogModels.Date as Time from DailyLogModels join AppModels on AppModels.ID=DailyLogModels.AppModelID where DailyLogModels.Date>=@p0 and DailyLogModels.Date<= @p1 GROUP BY AppModels.CategoryID,DailyLogModels.Date ", dateArr[0].Date, dateArr[1].Date).ToArray();
                 //var ts = end - start;
                 //var days = ts.TotalDays + 1;
 
@@ -524,7 +524,7 @@ namespace Core.Servicers.Instances
             using (var db = _database.GetReaderContext())
             {
 
-                var data = db.Database.SqlQuery<ColumnItemDataModel>("select sum(Time) as Total,AppModelID as AppID,DataTime as Time from HoursLogModels  where AppModelID=" + appID + " and DataTime>='" + date.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and DataTime<= '" + date.Date.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY AppModelID,DataTime ").ToArray();
+                var data = db.Database.SqlQuery<ColumnItemDataModel>("select sum(Time) as Total,AppModelID as AppID,DataTime as Time from HoursLogModels  where AppModelID=@p0 and DataTime>=@p1 and DataTime<= @p2 GROUP BY AppModelID,DataTime ", appID, date.Date, new DateTime(date.Year, date.Month, date.Day, 23, 59, 59)).ToArray();
 
 
                 List<ColumnDataModel> list = new List<ColumnDataModel>();
@@ -559,7 +559,7 @@ namespace Core.Servicers.Instances
             {
                 //  查出有数据的分类
 
-                var data = db.Database.SqlQuery<ColumnItemDataModel>("select sum(Time) as Total,AppModelID as AppID,Date as Time from DailyLogModels where AppModelID=" + appID + " and Date>='" + start.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and Date<= '" + end.Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY Date ").ToArray();
+                var data = db.Database.SqlQuery<ColumnItemDataModel>("select sum(Time) as Total,AppModelID as AppID,Date as Time from DailyLogModels where AppModelID=@p0 and Date>=@p1 and Date<= @p2 GROUP BY Date ", appID, start.Date, end.Date).ToArray();
 
 
                 var ts = end - start;
@@ -601,7 +601,7 @@ namespace Core.Servicers.Instances
                 var dateArr = Time.GetYearDate(date);
 
 
-                var data = db.Database.SqlQuery<ColumnItemDataModel>("select sum(Time) as Total,AppModelID as AppID,Date as Time from DailyLogModels  where  AppModelID=" + appID + " and Date>='" + dateArr[0].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and Date<= '" + dateArr[1].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY Date").ToArray();
+                var data = db.Database.SqlQuery<ColumnItemDataModel>("select sum(Time) as Total,AppModelID as AppID,Date as Time from DailyLogModels  where  AppModelID=@p0 and Date>=@p1 and Date<= @p2 GROUP BY Date", appID, dateArr[0].Date, dateArr[1].Date).ToArray();
 
 
 
@@ -640,9 +640,9 @@ namespace Core.Servicers.Instances
 
             using (var db = _database.GetReaderContext())
             {
-                db.Database.ExecuteSqlCommand("delete from DailyLogModels  where Date>='" + start.Date.ToString("yyyy-MM-01 00:00:00") + "' and Date<= '" + end.Date.ToString("yyyy-MM-dd 23:59:59") + "'");
+                db.Database.ExecuteSqlCommand("delete from DailyLogModels  where Date>=@p0 and Date<= @p1", new DateTime(start.Year, start.Month, 1), new DateTime(end.Year, end.Month, end.Day, 23, 59, 59));
 
-                db.Database.ExecuteSqlCommand("delete from HoursLogModels  where DataTime>='" + start.Date.ToString("yyyy-MM-01 00:00:00") + "' and DataTime<= '" + end.Date.ToString("yyyy-MM-dd 23:59:59") + "'");
+                db.Database.ExecuteSqlCommand("delete from HoursLogModels  where DataTime>=@p0 and DataTime<= @p1", new DateTime(start.Year, start.Month, 1), new DateTime(end.Year, end.Month, end.Day, 23, 59, 59));
             }
         }
 
@@ -743,7 +743,7 @@ namespace Core.Servicers.Instances
                 if (start.Date == end.Date)
                 {
                     //  获取24小时
-                    var data = db.Database.SqlQuery<TimeDataModel>("select sum(Time) as Total,DataTime as Time from HoursLogModels where  HoursLogModels.DataTime>='" + start.Date.ToString("yyyy-MM-dd 00:00:00") + "' and HoursLogModels.DataTime<= '" + start.Date.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY DataTime ").ToArray();
+                    var data = db.Database.SqlQuery<TimeDataModel>("select sum(Time) as Total,DataTime as Time from HoursLogModels where  HoursLogModels.DataTime>=@p0 and HoursLogModels.DataTime<= @p1 GROUP BY DataTime ", start.Date, new DateTime(start.Year, start.Month, start.Day, 23, 59, 59)).ToArray();
 
                     double[] result = new double[24];
                     for (int i = 0; i < 24; i++)
@@ -762,7 +762,7 @@ namespace Core.Servicers.Instances
                     int days = (int)ts.TotalDays + 1;
 
 
-                    var data = db.Database.SqlQuery<TimeDataModel>("select sum(Time) as Total,Date as Time from DailyLogModels where  DailyLogModels.Date>='" + start.Date.ToString("yyyy-MM-dd 00:00:00") + "' and DailyLogModels.Date<= '" + end.Date.ToString("yyyy-MM-dd 23:59:59") + "' GROUP BY Date ").ToArray();
+                    var data = db.Database.SqlQuery<TimeDataModel>("select sum(Time) as Total,Date as Time from DailyLogModels where  DailyLogModels.Date>=@p0 and DailyLogModels.Date<= @p1 GROUP BY Date ", start.Date, new DateTime(end.Year, end.Month, end.Day, 23, 59, 59)).ToArray();
 
                     double[] result = new double[days];
                     for (int i = 0; i < days; i++)
@@ -782,7 +782,7 @@ namespace Core.Servicers.Instances
             using (var db = _database.GetReaderContext())
             {
                 var dateArr = Time.GetYearDate(date);
-                var data = db.Database.SqlQuery<TimeDataModel>("select sum(Time) as Total,Date as Time from DailyLogModels  where   Date>='" + dateArr[0].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' and Date<= '" + dateArr[1].Date.ToString("yyyy-MM-dd HH:mm:ss") + "' GROUP BY Date").ToArray();
+                var data = db.Database.SqlQuery<TimeDataModel>("select sum(Time) as Total,Date as Time from DailyLogModels  where   Date>=@p0 and Date<= @p1 GROUP BY Date", dateArr[0].Date, dateArr[1].Date).ToArray();
                 double[] result = new double[12];
 
                 for (int i = 1; i < 13; i++)
@@ -801,9 +801,9 @@ namespace Core.Servicers.Instances
         {
             using (var db = _database.GetReaderContext())
             {
-                db.Database.ExecuteSqlCommand("delete from DailyLogModels  where AppModelID = " + appID_);
-                db.Database.ExecuteSqlCommand("delete from HoursLogModels  where AppModelID = " + appID_);
-                db.Database.ExecuteSqlCommand("update AppModels set TotalTime = 0  where ID = " + appID_);
+                db.Database.ExecuteSqlCommand("delete from DailyLogModels  where AppModelID = @p0", appID_);
+                db.Database.ExecuteSqlCommand("delete from HoursLogModels  where AppModelID = @p0", appID_);
+                db.Database.ExecuteSqlCommand("update AppModels set TotalTime = 0  where ID = @p0", appID_);
             }
         }
     }
