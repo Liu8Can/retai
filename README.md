@@ -1,9 +1,11 @@
-# Tai
+# retai
+
 👻 在 Windows 上统计 `软件` 使用时长和 `网站` 浏览时长
 
-<img src="index.jpg" width=600 />
+> 本项目 fork 自 [Planshit/Tai](https://github.com/Planshit/Tai)（原作者已停止维护），感谢原作者 Plan shit 的开源贡献。  
+> retai 由社区 fork 并独立维护，不再向上游提交 PR，后续开发方向由维护者自主决定。
 
-广告位出售，联系方式：bmFjYXQ0YjEx （ base64 添加请备注来意
+<img src="index.jpg" width=600 />
 
 ## 开始使用
 
@@ -63,10 +65,4 @@ Tai 能够一定程度地发现用户离开电脑从而停止统计，也可以�
 
 ##  ❤️ + 👻
 
-开源软件的更新动力来源于用户的支持，无论是精神还是经济上，如果 Tai 给你带去了帮助请给开发者一些鼓励吧~
-
-#### 来杯☕
-
-<img src="https://github.com/noberumotto/noberumotto/raw/master/wechat.jpg" width="256px"/> <img src="https://github.com/noberumotto/noberumotto/raw/master/alipay.jpg" width="256px" />
-
-[关于&联系 →](https://github.com/noberumotto/noberumotto/blob/master/about.md)
+感谢原作者 Plan shit 的开源贡献。retai 是一个社区维护项目，欢迎在 [Issues](https://github.com/Liu8Can/retai/issues) 中提交 Bug 报告和功能建议。
