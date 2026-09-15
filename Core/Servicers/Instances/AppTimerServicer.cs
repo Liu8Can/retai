@@ -23,6 +23,7 @@ namespace Core.Servicers.Instances
         private DateTime _startTime = DateTime.MinValue;
         private DateTime _endTime = DateTime.MinValue;
         private string _activeProcess;
+        private DateTime _lastAcceptedActiveTime = DateTime.MinValue;
 
         private Dictionary<string, AppData> _appData;
         private System.Timers.Timer _timer;
@@ -45,6 +46,7 @@ namespace Core.Servicers.Instances
             _appData = new Dictionary<string, AppData>();
             _appDuration = 0;
             _activeProcess = string.Empty;
+            _lastAcceptedActiveTime = DateTime.MinValue;
 
             _timer = new System.Timers.Timer();
             _timer.Interval = 1000;
@@ -73,6 +75,18 @@ namespace Core.Servicers.Instances
 
         private void AppObserver_OnAppActiveChanged(object sender, AppActiveChangedEventArgs e)
         {
+            // Discard out-of-order events: if a stale Win32 foreground callback
+            // arrives after a newer one has already been processed, the stale
+            // event would corrupt timing by restarting/stopping the timer with
+            // wrong _startTime/_endTime. This is the root cause of "1 hour
+            // counted as 90 minutes" (upstream #309/#407).
+            if (e.ActiveTime < _lastAcceptedActiveTime)
+            {
+                Debug.WriteLine($"[AppTimer] Discarded out-of-order event: {e.App.Process} @ {e.ActiveTime:HH:mm:ss.fff} (last accepted: {_lastAcceptedActiveTime:HH:mm:ss.fff})");
+                return;
+            }
+            _lastAcceptedActiveTime = e.ActiveTime;
+
             string processName = e.App.Process;
             bool isStatistical = IsStatistical(e.App);
 
@@ -84,7 +98,7 @@ namespace Core.Servicers.Instances
 
                 if (isStatistical)
                 {
-                    StartTimer();
+                    StartTimer(e.ActiveTime);
                 }
 
                 _activeProcess = e.App.Type == AppType.SystemComponent ? string.Empty : processName;
@@ -115,10 +129,10 @@ namespace Core.Servicers.Instances
             _appDuration++;
         }
 
-        private void StartTimer()
+        private void StartTimer(DateTime activeTime)
         {
             _timer.Start();
-            _startTime = DateTime.Now;
+            _startTime = activeTime;
             _appDuration = 0;
         }
 

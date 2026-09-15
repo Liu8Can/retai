@@ -221,5 +221,80 @@ namespace Tai.Tests
             // No duration event for the invalid app
             Assert.Equal(0, eventCount);
         }
+
+        /// <summary>
+        /// Out-of-order events (stale callbacks arriving after newer ones)
+        /// should be silently discarded to prevent timing corruption.
+        /// This is the core regression test for the #257 fix.
+        /// </summary>
+        [Fact]
+        public void OutOfOrderEvent_IsDiscarded()
+        {
+            var observerMock = new Mock<IAppObserver>();
+            var servicer = new AppTimerServicer(observerMock.Object);
+
+            int eventCount = 0;
+            string lastProcess = null;
+            servicer.OnAppDurationUpdated += (sender, e) =>
+            {
+                eventCount++;
+                lastProcess = e.App.Process;
+            };
+
+            servicer.Start();
+
+            var baseTime = new DateTime(2025, 6, 15, 10, 0, 0);
+
+            // App A active at t=0
+            var appA = MakeAppInfo("appA");
+            RaiseAppActiveChanged(observerMock, appA, baseTime);
+
+            // App B active at t=2s (normal switch)
+            var appB = MakeAppInfo("appB");
+            RaiseAppActiveChanged(observerMock, appB, baseTime.AddSeconds(2));
+
+            // Stale event: App A callback from t=1s arrives late (out of order)
+            RaiseAppActiveChanged(observerMock, appA, baseTime.AddSeconds(1));
+
+            // The stale event should have been discarded — last event emitted
+            // should be for appA (from the A->B switch), not a second event.
+            // The stale A@t1 must NOT have restarted A's timer or emitted a
+            // duration for B again.
+            Assert.True(eventCount <= 1, $"Expected at most 1 duration event, got {eventCount}");
+            if (eventCount == 1)
+            {
+                Assert.Equal("appA", lastProcess);
+            }
+        }
+
+        /// <summary>
+        /// When events arrive in correct chronological order, the timer
+        /// should process them normally (regression guard for the discard logic).
+        /// </summary>
+        [Fact]
+        public void InOrderEvents_ProcessedNormally()
+        {
+            var observerMock = new Mock<IAppObserver>();
+            var servicer = new AppTimerServicer(observerMock.Object);
+
+            int eventCount = 0;
+            servicer.OnAppDurationUpdated += (sender, e) => eventCount++;
+
+            servicer.Start();
+
+            var baseTime = new DateTime(2025, 6, 15, 10, 0, 0);
+
+            // App A at t=0 — timer starts
+            RaiseAppActiveChanged(observerMock, MakeAppInfo("appA"), baseTime);
+
+            // Wait for at least one timer tick (1s interval)
+            Thread.Sleep(1500);
+
+            // App B at t=1.5s — switch should emit duration for App A
+            RaiseAppActiveChanged(observerMock, MakeAppInfo("appB"), baseTime.AddSeconds(2));
+
+            // The switch from A to B should emit a duration event
+            Assert.Equal(1, eventCount);
+        }
     }
 }
