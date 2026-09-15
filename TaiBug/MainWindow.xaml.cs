@@ -38,7 +38,7 @@ namespace TaiBug
         }
         private void IssuesHyperlinkClick(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("https://github.com/Planshit/Tai/issues/new"));
+            Process.Start(new ProcessStartInfo("https://github.com/Liu8Can/retai/issues/new"));
         }
         private void EmailHyperlinkClick(object sender, RoutedEventArgs e)
         {
@@ -56,7 +56,7 @@ namespace TaiBug
             else
             {
                 MessageBox.Show("Tai.exe 似乎已被删除", "重启失败提示", MessageBoxButton.OK, MessageBoxImage.Error);
-                Process.Start(new ProcessStartInfo("https://github.com/Planshit/Tai"));
+                Process.Start(new ProcessStartInfo("https://github.com/Liu8Can/retai"));
             }
             Close();
         }
