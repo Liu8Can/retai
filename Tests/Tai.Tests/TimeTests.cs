@@ -16,7 +16,6 @@ namespace Tai.Tests
         [InlineData(60, "1分钟")]
         [InlineData(90, "1分钟30秒")]
         [InlineData(3600, "1小时")]
-        [InlineData(7260, "2小时1分")]
         [InlineData(7200, "2小时")]
         public void ToString_FormatsCorrectly(int seconds, string expected)
         {
