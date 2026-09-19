@@ -43,14 +43,14 @@ namespace TaiBug
         private void Restart(object sender, RoutedEventArgs e)
         {
             string taiPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                "Tai.exe");
+                "reTai.exe");
             if (File.Exists(taiPath))
             {
                 Process.Start(taiPath);
             }
             else
             {
-                MessageBox.Show("Tai.exe 似乎已被删除", "重启失败提示", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("reTai.exe 似乎已被删除", "重启失败提示", MessageBoxButton.OK, MessageBoxImage.Error);
                 Process.Start(new ProcessStartInfo("https://github.com/Liu8Can/retai"));
             }
             Close();

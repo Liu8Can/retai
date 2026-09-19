@@ -23,7 +23,7 @@ namespace Core.Librarys
             var logonUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             string tai = Path.Combine(
                   AppDomain.CurrentDomain.BaseDirectory,
-                   "Tai.exe");
+                   "reTai.exe");
             string taskDescription = "Tai开机自启服务";
 
             using (var taskService = new TaskService())
