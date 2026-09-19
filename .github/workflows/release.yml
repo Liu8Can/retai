@@ -53,13 +53,13 @@ jobs:
             Copy-Item -Path "Updater/bin/Release/Newtonsoft.Json.dll" -Destination $staging -Force -ErrorAction SilentlyContinue
           }
 
-          # Remove unnecessary files (keep .config — Tai.exe.config has binding redirects!)
+          # Remove unnecessary files (keep .config — reTai.exe.config has binding redirects!)
           Get-ChildItem -Path $staging -Include *.pdb,*.xml -Recurse | Remove-Item -Force
 
           Compress-Archive -Path "$staging/*" -DestinationPath $zipName -Force
 
           # Verify critical files are in the package
-          $requiredFiles = @("Tai.exe", "Tai.exe.config", "Core.dll", "System.Data.SQLite.dll", "System.Data.SQLite.EF6.dll")
+          $requiredFiles = @("reTai.exe", "reTai.exe.config", "Core.dll", "System.Data.SQLite.dll", "System.Data.SQLite.EF6.dll")
           foreach ($f in $requiredFiles) {
             if (-not (Test-Path "$staging/$f")) {
               Write-Error "MISSING REQUIRED FILE: $f"
@@ -67,8 +67,8 @@ jobs:
             }
           }
           Write-Host "All required files present in package"
-          Write-Host "=== Tai.exe.config content ==="
-          Get-Content "$staging/Tai.exe.config"
+          Write-Host "=== reTai.exe.config content ==="
+          Get-Content "$staging/reTai.exe.config"
 
           # Generate SHA256
           $hash = (Get-FileHash $zipName -Algorithm SHA256).Hash

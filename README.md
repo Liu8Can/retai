@@ -17,7 +17,7 @@
 
 1. 在 [releases](https://github.com/Liu8Can/retai/releases) 中可以下载已经编译好的 exe 可执行文件压缩包。建议优选选择标记有 `Latest` 的版本，划到下方的 `Assets` 找到 `Taix.x.x.x.zip` 点击下载；
 2. 下载压缩包后解压到合适的位置（建议不要解压到桌面、系统盘），进入解压后的文件夹内，找到 `👻Tai.exe` ，启动程序，成功启动后你将在状态栏看到 👻 图标；
-3. 使用 `网站浏览统计` 功能需要安装相应的浏览器拓展并且在 设置 > 常规 > 功能中启用。[下载安装浏览器插件说明](https://github.com/Liu8Can/retai/discussions/279);
+3. 使用 `网站浏览统计` 功能需要安装相应的浏览器拓展并且在 设置 > 常规 > 功能中启用。[下载安装浏览器插件说明](https://github.com/Liu8Can/retai/tree/master/WebExtensions);
 4. 请以管理员身份运行 Tai ，否则无法统计部分软件。
 
 #### 卸载

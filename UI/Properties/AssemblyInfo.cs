@@ -7,11 +7,11 @@ using System.Windows;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("retai")]
+[assembly: AssemblyTitle("reTai")]
 [assembly: AssemblyDescription("retai - 软件使用时长和网站浏览时长统计")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("retai contributors")]
-[assembly: AssemblyProduct("retai")]
+[assembly: AssemblyProduct("reTai")]
 [assembly: AssemblyCopyright("Copyright © 2026 retai contributors. Based on Tai by Plan shit (MIT).")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

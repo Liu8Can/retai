@@ -147,7 +147,7 @@ namespace Updater
                 {
                     SetStatus("更新完成！", false);
                     Process tai = new Process();
-                    ProcessStartInfo startInfo = new ProcessStartInfo(System.IO.Path.Combine(unpath, "Tai.exe"));
+                    ProcessStartInfo startInfo = new ProcessStartInfo(System.IO.Path.Combine(unpath, "reTai.exe"));
                     tai.StartInfo = startInfo;
                     tai.Start();
                 }
