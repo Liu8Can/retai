@@ -40,11 +40,6 @@ namespace TaiBug
         {
             Process.Start(new ProcessStartInfo("https://github.com/Liu8Can/retai/issues/new"));
         }
-        private void EmailHyperlinkClick(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetText("heis@thelittlepandaisbehind.com");
-            MessageBox.Show("邮箱已复制");
-        }
         private void Restart(object sender, RoutedEventArgs e)
         {
             string taiPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,

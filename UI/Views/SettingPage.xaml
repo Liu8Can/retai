@@ -79,7 +79,7 @@
                         <Image Width="25" Source="/Resources/Icons/tai.ico" HorizontalAlignment="Left"/>
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                             <TextBlock VerticalAlignment="Center">
-                                <Run Text="Tai 版本号 "/><Run Text="{Binding Version}"/>
+                                <Run Text="retai 版本号 "/><Run Text="{Binding Version}"/>
                             </TextBlock>
                             <Btn:Button Visibility="{Binding CheckUpdateBtnVisibility}" Command="{Binding CheckUpdate}" Margin="20,0,0,0" VerticalAlignment="Center" Width="120" Icon="SetlockScreen" Content="检查更新"/>
                         </StackPanel>
