@@ -18,7 +18,7 @@
                 <ControlTemplate TargetType="{x:Type local:BaseListItem}">
                     <Grid Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
 
-                        <Border BorderBrush="#f3f3f3" BorderThickness="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="BoxBorder" CornerRadius="4" Background="{DynamicResource BaseListItemBgBrush}" >
+                        <Border BorderBrush="Transparent" BorderThickness="0" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="BoxBorder" CornerRadius="8" Background="{DynamicResource BaseListItemBgBrush}" >
                             <Grid VerticalAlignment="Center" Margin="10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="9*"/>

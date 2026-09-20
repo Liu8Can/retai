@@ -56,7 +56,7 @@
 
                                     <TextBlock x:Name="NameTextObj" Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ChartsItemTypeCard}}, Path=Data.Name}" Foreground="{DynamicResource WhiteBgTextBrush}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10"/>
 
-                                    <Border VerticalAlignment="Top" CornerRadius="5" Padding="5" HorizontalAlignment="Left" Margin="10" >
+                                    <Border VerticalAlignment="Top" CornerRadius="8" Padding="5" HorizontalAlignment="Left" Margin="10" >
                                         <Border.Background>
                                             <SolidColorBrush Color="{DynamicResource ThemeColor}" Opacity="0.7"/>
                                         </Border.Background>

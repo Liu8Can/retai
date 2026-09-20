@@ -20,7 +20,7 @@
                                 <!--<Border.Effect>
                                 <DropShadowEffect BlurRadius="14" ShadowDepth="0" Direction="0" Opacity="0.05"/>
                             </Border.Effect>-->
-                                <Border x:Name="Border" Margin="0" Background="{DynamicResource ChartMonthGridItemBgBrush}"  CornerRadius="4"  Width="20" Height="20" BorderThickness="0" BorderBrush="{DynamicResource ThemeBrush}">
+                                <Border x:Name="Border" Margin="0" Background="{DynamicResource ChartMonthGridItemBgBrush}"  CornerRadius="8"  Width="20" Height="20" BorderThickness="0" BorderBrush="{DynamicResource ThemeBrush}">
 
                                     <Border.Clip>
                                         <RectangleGeometry RadiusX="4" RadiusY="4" Rect="0,0,20,20"/>

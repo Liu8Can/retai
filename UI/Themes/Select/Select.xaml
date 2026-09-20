@@ -22,7 +22,7 @@
                                 </Border.Effect>
                                 
                             </Border>
-                            <Border x:Name="Main" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" CornerRadius="6">
+                            <Border x:Name="Main" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" CornerRadius="8">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <!--<TextBlock x:Name="PlaceholderText" Text="请选择" Visibility="Collapsed"/>-->
                                     <base:Img x:Name="Img" URL="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:Select}}, Path=SelectedItem.Img}" Width="16" Height="16"  VerticalAlignment="Center"/>

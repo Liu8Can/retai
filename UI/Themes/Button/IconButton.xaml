@@ -16,7 +16,7 @@
                 <ControlTemplate TargetType="{x:Type local:IconButton}">
                     <!--<Border Background="{TemplateBinding Background}"  x:Name="Border">-->
 
-                    <Border  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="BoxBorder" CornerRadius="4" Padding="5" Background="Transparent">
+                    <Border  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" x:Name="BoxBorder" CornerRadius="8" Padding="5" Background="Transparent">
                         <Grid>
                           
                             <base:Icon x:Name="Icon" IconType="{TemplateBinding Icon}" Foreground="{DynamicResource StandardTextBrush}" VerticalAlignment="Center"  FontSize="{TemplateBinding FontSize}" >

@@ -144,7 +144,7 @@
                                     <Grid>
                                         <Border BorderBrush="{Binding ElementName=Border,Path=BorderBrush}" BorderThickness="{Binding ElementName=Border,Path=BorderThickness}"  Background="{Binding ElementName=Border,Path=Background}" Margin="{Binding ElementName=Border,Path=Margin}" CornerRadius="{Binding ElementName=Border,Path=CornerRadius}">
                                             <Border.Effect>
-                                                <DropShadowEffect Color="#f3f3f3" BlurRadius="1" Direction="300" ShadowDepth="4" Opacity="0.15" RenderingBias="Performance" ></DropShadowEffect>
+                                                <DropShadowEffect BlurRadius="16" ShadowDepth="0" Direction="0" Color="Black" Opacity="0.06" RenderingBias="Performance" ></DropShadowEffect>
                                             </Border.Effect>
                                         </Border>
 

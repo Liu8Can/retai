@@ -26,7 +26,7 @@
                     <Grid>
                         <Border x:Name="Shadow" Visibility="Collapsed" BorderBrush="{Binding ElementName=BoxBorder,Path=BorderBrush}" BorderThickness="{Binding ElementName=BoxBorder,Path=BorderThickness}" Panel.ZIndex="-1" Width="{Binding ElementName=BoxBorder,Path=ActualWidth}"  Height="{Binding ElementName=BoxBorder,Path=ActualHeight}" CornerRadius="{Binding ElementName=BoxBorder,Path=CornerRadius}" Background="{Binding ElementName=BoxBorder,Path=Background}">
                             <Border.Effect>
-                                <DropShadowEffect Color="#d8d2d2" BlurRadius="1" Direction="300" ShadowDepth="4" Opacity="0.1" RenderingBias="Performance" ></DropShadowEffect>
+                                <DropShadowEffect BlurRadius="16" ShadowDepth="0" Direction="0" Color="Black" Opacity="0.06" RenderingBias="Performance" ></DropShadowEffect>
                             </Border.Effect>
                         </Border>
                         <Border x:Name="BoxBorder" BorderBrush="Transparent" Background="{TemplateBinding Background}" BorderThickness="2" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding BoxPadding}">
@@ -46,7 +46,7 @@
 VerticalAlignment="Center" >
                                     <TextBlock x:Name="Title" Text="{TemplateBinding Title}" Foreground="{TemplateBinding TitleColor}" FontSize="{TemplateBinding TitleSize}" Margin="{TemplateBinding TitleMargin}"/>
                                     <Grid>
-                                        <TextBlock x:Name="Placeholder" Text="{TemplateBinding Placeholder}" Foreground="#a3a3a3" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" 
+                                        <TextBlock x:Name="Placeholder" Text="{TemplateBinding Placeholder}" Foreground="{DynamicResource DisabledTextBrush}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" 
 Visibility="Collapsed" Padding="{TemplateBinding Padding}"/>
                                         <ScrollViewer 
                         x:Name="PART_ContentHost" VerticalAlignment="Center" />
@@ -195,9 +195,9 @@ Visibility="Collapsed" Padding="{TemplateBinding Padding}"/>
                     <Border Background="{TemplateBinding Background}"  x:Name="Border">
 
                         <Grid>
-                            <Border x:Name="BoxBorder" BorderBrush="#a3a3a3" BorderThickness="2" CornerRadius="4">
+                            <Border x:Name="BoxBorder" BorderBrush="{DynamicResource SubTextBrush}" BorderThickness="2" CornerRadius="8">
                                 <Grid>
-                                    <TextBlock Margin="5,0" x:Name="Placeholder" Text="{TemplateBinding Placeholder}" Foreground="#a3a3a3" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                    <TextBlock Margin="5,0" x:Name="Placeholder" Text="{TemplateBinding Placeholder}" Foreground="{DynamicResource DisabledTextBrush}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" Visibility="Collapsed"/>
                                     <ScrollViewer Margin="5,0"
                         x:Name="PART_ContentHost" VerticalAlignment="Center"/>
                                 </Grid>

@@ -5,10 +5,10 @@
                     >
     <s:String x:Key="ThemeName">Dark</s:String>
     <!--【主题颜色】-->
-    <Color x:Key="ThemeColor">#FF8780F7</Color>
+    <Color x:Key="ThemeColor">#818CF8</Color>
 
     <!--鼠标经过背景颜色-->
-    <Color x:Key="HoverBackgroundColor">#4d4d4d</Color>
+    <Color x:Key="HoverBackgroundColor">#2A2A2E</Color>
 
     <!--【通用笔刷】-->
     <!--主题颜色笔刷-->
@@ -16,132 +16,124 @@
     <!---鼠标经过背景颜色-->
     <SolidColorBrush x:Key="HoverBackgroundBrush" Color="{StaticResource HoverBackgroundColor}" />
     <!--标准背景颜色-->
-    <SolidColorBrush x:Key="StandardBackgroundBrush" Color="#3e3e3e" />
-    <SolidColorBrush x:Key="StandardBackgroundBrush2" Color="#3e3e3e" />
+    <SolidColorBrush x:Key="StandardBackgroundBrush" Color="#1A1A1E" />
+    <SolidColorBrush x:Key="StandardBackgroundBrush2" Color="#1A1A1E" />
 
     <!--【窗口】-->
     <!--窗口边框颜色-->
-    <SolidColorBrush x:Key="WindowBorderBrush" Color="#323232" />
-    
-    <SolidColorBrush x:Key="StandardTextBrush" Color="#ffffff" />
-    <SolidColorBrush x:Key="SubTextBrush" Color="#ccc" />
+    <SolidColorBrush x:Key="WindowBorderBrush" Color="#2A2A2E" />
+
+    <SolidColorBrush x:Key="StandardTextBrush" Color="#F3F4F6" />
+    <SolidColorBrush x:Key="SubTextBrush" Color="#9CA3AF" />
 
     <!--窗口背景颜色-->
-    <!--<LinearGradientBrush x:Key="WindowBackground" >
-        <GradientStop Color="#161616" Offset="0"/>
-        <GradientStop Color="#161616" Offset="0.8"/>
-        <GradientStop Color="#FF14104A" Offset="1"/>
-    </LinearGradientBrush>-->
-    <LinearGradientBrush x:Key="WindowBackground" >
-        <GradientStop Color="#161616" Offset="0"/>
-        <GradientStop Color="#161616" Offset="0.8"/>
-        <GradientStop Color="{DynamicResource ThemeColor}" Offset="1.2"/>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="WindowContentBackground" Color="#FF383636" Opacity=".5"/>
-    <SolidColorBrush x:Key="WindowContentBorder" Color="#FF121010"/>
-    <SolidColorBrush x:Key="CardBorder" Color="Transparent"/>
+    <SolidColorBrush x:Key="WindowBackground" Color="#0F0F11" />
+
+    <SolidColorBrush x:Key="WindowContentBackground" Color="#1A1A1E" />
+    <SolidColorBrush x:Key="WindowContentBorder" Color="#2A2A2E"/>
+    <SolidColorBrush x:Key="CardBorder" Color="#2A2A2E"/>
 
     <!--导航栏-->
-    <Color x:Key="NavSelectedColor">#313131</Color>
+    <Color x:Key="NavSelectedColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="NavSelectedBrush" Color="{StaticResource NavSelectedColor}" />
 
-    <Color x:Key="NavUnselectedTextColor">#FFAFAFAF</Color>
+    <Color x:Key="NavUnselectedTextColor">#9CA3AF</Color>
     <SolidColorBrush x:Key="NavUnselectedTextBrush" Color="{StaticResource NavUnselectedTextColor}" />
 
     <!--设置面板-->
-    <Color x:Key="SettingPanelBgColor">#323232</Color>
+    <Color x:Key="SettingPanelBgColor">#1A1A1E</Color>
     <SolidColorBrush x:Key="SettingPanelBgBrush" Color="{StaticResource SettingPanelBgColor}" />
-    <Color x:Key="SettingPanelBorderColor">#232323</Color>
+    <Color x:Key="SettingPanelBorderColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="SettingPanelBorderBrush" Color="{StaticResource SettingPanelBorderColor}" />
-    <Color x:Key="SettingPanelSpliteLineColor">#706f6f</Color>
+    <Color x:Key="SettingPanelSpliteLineColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="SettingPanelSpliteLineBrush" Color="{StaticResource SettingPanelSpliteLineColor}" />
 
     <!--白色背景文字颜色-->
-    <Color x:Key="WhiteBgTextColor">#ccc</Color>
+    <Color x:Key="WhiteBgTextColor">#D1D5DB</Color>
     <SolidColorBrush x:Key="WhiteBgTextBrush" Color="{StaticResource WhiteBgTextColor}" />
 
     <!--默认基础文字颜色-->
-    <Color x:Key="DefaultTextColor">#e7e7e7</Color>
+    <Color x:Key="DefaultTextColor">#D1D5DB</Color>
     <SolidColorBrush x:Key="DefaultTextBrush" Color="{StaticResource DefaultTextColor}" />
 
     <!--列表-->
-    <Color x:Key="ListItemIconBgColor">#3e3e3e</Color>
+    <Color x:Key="ListItemIconBgColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="ListItemIconBgBrush" Color="{StaticResource ListItemIconBgColor}" />
 
-    <Color x:Key="BaseListItemBgColor">#3e3e3e</Color>
+    <Color x:Key="BaseListItemBgColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="BaseListItemBgBrush" Color="{StaticResource BaseListItemBgColor}" />
-    <Color x:Key="BaseListItemHoverBgColor">#4d4d4d</Color>
+    <Color x:Key="BaseListItemHoverBgColor">#3A3A3E</Color>
 
     <!--日期选择控件-->
-    <Color x:Key="DatePickerItemBgColor">#5A5A5A</Color>
+    <Color x:Key="DatePickerItemBgColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="DatePickerItemBgBrush" Color="{StaticResource DatePickerItemBgColor}" />
 
     <!--月热力图控件-->
-    <Color x:Key="ChartMonthGridItemBgColor">#7F777777</Color>
+    <Color x:Key="ChartMonthGridItemBgColor">#3A3A3E</Color>
     <SolidColorBrush x:Key="ChartMonthGridItemBgBrush" Color="{StaticResource ChartMonthGridItemBgColor}" />
 
     <!--弹出层边框-->
-    <Color x:Key="PopupBorderColor">#3c3b3b</Color>
+    <Color x:Key="PopupBorderColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="PopupBorderBrush" Color="{StaticResource PopupBorderColor}" />
-    <Color x:Key="PopupBackgroundColor">#2B2B2B</Color>
+    <Color x:Key="PopupBackgroundColor">#1A1A1E</Color>
     <SolidColorBrush x:Key="PopupBackgroundBrush" Color="{StaticResource PopupBackgroundColor}" />
 
     <!--标题栏按钮-->
-    <Color x:Key="TitleBarBtnColor">#ffffff</Color>
+    <Color x:Key="TitleBarBtnColor">#D1D5DB</Color>
     <SolidColorBrush x:Key="TitleBarBtnBrush" Color="{StaticResource TitleBarBtnColor}" />
 
     <!--分割线颜色-->
-    <Color x:Key="SeparatorColor">#525151</Color>
+    <Color x:Key="SeparatorColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="SeparatorBrush" Color="{StaticResource SeparatorColor}" />
 
     <!--上下文菜单-->
-    <Color x:Key="ContextBorderColor">#3c3b3b</Color>
+    <Color x:Key="ContextBorderColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="ContextBorderBrush" Color="{StaticResource ContextBorderColor}" />
 
     <!--图表边框-->
-    <Color x:Key="ChartColBorderColor">#7e7e7e</Color>
+    <Color x:Key="ChartColBorderColor">#3A3A3E</Color>
     <SolidColorBrush x:Key="ChartColBorderBrush" Color="{StaticResource ChartColBorderColor}" />
 
     <!--分类页面-->
-    <Color x:Key="CategoryAppNumBgColor">#646464</Color>
+    <Color x:Key="CategoryAppNumBgColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="CategoryAppNumBgBrush" Color="{StaticResource CategoryAppNumBgColor}" />
 
     <!--输入框-->
-    <Color x:Key="InputBoxBgColor">#3e3e3e</Color>
+    <Color x:Key="InputBoxBgColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="InputBoxBgBrush" Color="{StaticResource InputBoxBgColor}" />
-    <Color x:Key="InputBoxHoverColor">#4d4d4d</Color>
+    <Color x:Key="InputBoxHoverColor">#3A3A3E</Color>
     <SolidColorBrush x:Key="InputBoxHoverBrush" Color="{StaticResource InputBoxHoverColor}" />
-    <Color x:Key="InputBoxFocusedBgColor">#4F4E4E</Color>
+    <Color x:Key="InputBoxFocusedBgColor">#1A1A1E</Color>
     <SolidColorBrush x:Key="InputBoxFocusedBgBrush" Color="{StaticResource InputBoxFocusedBgColor}" />
 
     <!--expander-->
-    <Color x:Key="ExpanderBgColor">#323232</Color>
+    <Color x:Key="ExpanderBgColor">#1A1A1E</Color>
     <SolidColorBrush x:Key="ExpanderBgBrush" Color="{StaticResource ExpanderBgColor}" />
-    <Color x:Key="ExpanderContentBgColor">#2e2e2e</Color>
+    <Color x:Key="ExpanderContentBgColor">#0F0F11</Color>
     <SolidColorBrush x:Key="ExpanderContentBgBrush" Color="{StaticResource ExpanderContentBgColor}" />
-    
+
     <!--占位框-->
-    <Color x:Key="PlaceholderRectBgColor">#323232</Color>
+    <Color x:Key="PlaceholderRectBgColor">#2A2A2E</Color>
     <SolidColorBrush x:Key="PlaceholderRectBgBrush" Color="{StaticResource PlaceholderRectBgColor}" />
-    <Color x:Key="PlaceholderRectBgFlashColor">#4d4d4d</Color>
+    <Color x:Key="PlaceholderRectBgFlashColor">#3A3A3E</Color>
     <SolidColorBrush x:Key="PlaceholderRectBgFlashBrush" Color="{StaticResource PlaceholderRectBgFlashColor}" />
 
-    <Color x:Key="DisabledTextColor">#504f4f</Color>
+    <Color x:Key="DisabledTextColor">#4B5563</Color>
     <SolidColorBrush x:Key="DisabledTextBrush" Color="{StaticResource DisabledTextColor}" />
 
     <!--滚动条-->
-    <Color x:Key="ScrollBarColor">#a0a0a0</Color>
+    <Color x:Key="ScrollBarColor">#6B7280</Color>
     <SolidColorBrush x:Key="ScrollBarBrush" Color="{StaticResource ScrollBarColor}" />
 
     <!--列表图表-->
-    <Color x:Key="ChartTypeListProgressBarColor">#7F777777</Color>
+    <Color x:Key="ChartTypeListProgressBarColor">#7F9CA3AF</Color>
     <SolidColorBrush x:Key="ChartTypeListProgressBarBrush" Color="{StaticResource ChartTypeListProgressBarColor}" />
 
     <!--危险颜色-->
-    <Color x:Key="DangerColor">#f51837</Color>
+    <Color x:Key="DangerColor">#EF4444</Color>
     <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}" />
 
     <!--提示颜色-->
-    <Color x:Key="WarningColor">#FFC408</Color>
+    <Color x:Key="WarningColor">#F59E0B</Color>
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
 </ResourceDictionary>

@@ -179,7 +179,7 @@
                                             Padding="15,15"
                                             CornerRadius="12"
                                             MaxWidth="320"
-                                            x:Name="ToastBorder" Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="99999">
+                                            x:Name="ToastBorder" Background="{DynamicResource PopupBackgroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="99999">
                                             <Border.RenderTransform>
                                                 <TransformGroup>
                                                     <TranslateTransform Y="-150"/>
@@ -203,7 +203,7 @@
      Padding="15,15"
      CornerRadius="10"
      Width="300"
-     x:Name="DialogBorder" Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="1000">
+     x:Name="DialogBorder" Background="{DynamicResource PopupBackgroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="1000">
                                             <Border.RenderTransform>
                                                 <TransformGroup>
                                                     <TranslateTransform Y="-150"/>
@@ -231,7 +231,7 @@
      Padding="15,15"
      CornerRadius="10"
      Width="350"
-     x:Name="InputModalBorder" Background="White" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="1000">
+     x:Name="InputModalBorder" Background="{DynamicResource PopupBackgroundBrush}" HorizontalAlignment="Center" VerticalAlignment="Top" Panel.ZIndex="1000">
                                             <Border.RenderTransform>
                                                 <TransformGroup>
                                                     <TranslateTransform Y="-150"/>
