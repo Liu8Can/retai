@@ -29,6 +29,43 @@ jobs:
       - name: Build Release
         run: msbuild Tai.sln /p:Configuration=Release /p:Platform="Any CPU" /m /v:minimal
 
+      - name: Smoke Test — Launch and Verify
+        shell: pwsh
+        run: |
+          $exePath = "UI\bin\Release\reTai.exe"
+          if (-not (Test-Path $exePath)) {
+            Write-Error "reTai.exe not found at $exePath"
+            exit 1
+          }
+
+          # Create Data directory for SQLite
+          $dataDir = "UI\bin\Release\Data"
+          New-Item -ItemType Directory -Path $dataDir -Force
+
+          # Launch the app
+          Write-Host "Launching reTai.exe..."
+          $proc = Start-Process -FilePath $exePath -PassThru -WindowStyle Minimized
+
+          # Wait 8 seconds for it to either crash or stabilize
+          Start-Sleep -Seconds 8
+
+          if ($proc.HasExited) {
+            Write-Error "reTai.exe CRASHED immediately! Exit code: $($proc.ExitCode)"
+            # Check for crash log
+            $logDir = "UI\bin\Release\Log"
+            if (Test-Path $logDir) {
+              $latestLog = Get-ChildItem $logDir -Filter "*.log" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+              if ($latestLog) {
+                Write-Host "=== Crash Log ==="
+                Get-Content $latestLog.FullName
+              }
+            }
+            exit 1
+          } else {
+            Write-Host "reTai.exe is running (PID: $($proc.Id)) — smoke test PASSED"
+            Stop-Process -Id $proc.Id -Force
+          }
+
       - name: Package Release Zip
         shell: pwsh
         run: |
