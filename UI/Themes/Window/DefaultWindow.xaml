@@ -8,7 +8,7 @@
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="FontFamily" Value="/Tai;component/Resources/Fonts/#Segoe MDL2 Assets"/>
+        <Setter Property="FontFamily" Value="/reTai;component/Resources/Fonts/#Segoe MDL2 Assets"/>
         <Setter Property="Foreground" Value="{DynamicResource TitleBarBtnBrush}"/>
         <!--<Setter Property="FontWeight" Value="Bold"/>-->
         <Setter Property="FontSize" Value="10"/>

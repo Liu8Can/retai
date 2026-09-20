@@ -73,3 +73,62 @@ jobs:
 
       - name: Build and Run Tests
         run: dotnet test Tests/Tai.Tests/Tai.Tests.csproj --configuration Debug --no-build --logger "console;verbosity=detailed"
+
+  smoke-test:
+    runs-on: windows-2022
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+        with:
+          nuget-version: '6.x'
+
+      - name: NuGet Restore
+        run: nuget restore Tai.sln
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release
+        run: msbuild Tai.sln /p:Configuration=Release /p:Platform="Any CPU" /m /v:minimal
+
+      - name: Launch and Verify
+        shell: pwsh
+        run: |
+          $exePath = "UI\bin\Release\reTai.exe"
+          $dataDir = "UI\bin\Release\Data"
+          New-Item -ItemType Directory -Path $dataDir -Force
+
+          Write-Host "Launching reTai.exe..."
+          $proc = Start-Process -FilePath $exePath -PassThru
+
+          Start-Sleep -Seconds 10
+
+          if ($proc.HasExited) {
+            Write-Host "reTai.exe exited with code: $($proc.ExitCode)"
+            $logDir = "UI\bin\Release\Log"
+            if (Test-Path $logDir) {
+              $latestLog = Get-ChildItem $logDir -Filter "*.log" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+              if ($latestLog) {
+                Write-Host "=== CRASH LOG ==="
+                Get-Content $latestLog.FullName -Raw
+              }
+            }
+            # Also check Windows Event Log
+            Write-Host "=== Checking Event Log ==="
+            $events = Get-WinEvent -FilterHashtable @{LogName='Application'; Level=2; StartTime=(Get-Date).AddMinutes(-5)} -MaxEvents 5 -ErrorAction SilentlyContinue
+            if ($events) {
+              foreach ($e in $events) {
+                Write-Host "Event: $($e.Message)"
+              }
+            }
+            Write-Host "=== Directory listing ==="
+            Get-ChildItem "UI\bin\Release" -Name | Sort-Object
+            exit 1
+          } else {
+            Write-Host "reTai.exe is running (PID: $($proc.Id)) — smoke test PASSED"
+            Stop-Process -Id $proc.Id -Force
+          }
+
