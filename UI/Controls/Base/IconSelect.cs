@@ -125,7 +125,7 @@ namespace UI.Controls.Base
         public IconSelect()
         {
             DefaultStyleKey = typeof(IconSelect);
-            URL = "pack://application:,,,/Tai;component/Resources/Emoji/(1).png";
+            URL = "pack://application:,,,/reTai;component/Resources/Emoji/(1).png";
             ShowSelectCommand = new Command(new Action<object>(OnShowSelect));
             FileSelectCommand = new Command(new Action<object>(OnFileSelect));
             mouseProc = HookCallback;
@@ -139,7 +139,7 @@ namespace UI.Controls.Base
             var list = new List<string>();
             for (int i = 1; i < 45; i++)
             {
-                list.Add($"pack://application:,,,/Tai;component/Resources/Emoji/({i}).png");
+                list.Add($"pack://application:,,,/reTai;component/Resources/Emoji/({i}).png");
             }
             Icons = list;
         }
