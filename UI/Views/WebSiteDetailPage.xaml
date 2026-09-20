@@ -30,7 +30,7 @@
                     <base:Img URL="{Binding WebSite.IconFile}"  Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0"/>
                     <StackPanel Grid.Column="1">
                         <base:View  Value="{Binding IsIgnore}">
-                            <Border Background="#f51837" Padding="10,5" CornerRadius="4" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left"  ToolTip="该站点数据将不会被统计">
+                            <Border Background="#f51837" Padding="10,5" CornerRadius="8" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left"  ToolTip="该站点数据将不会被统计">
                                 <StackPanel Orientation="Horizontal"  VerticalAlignment="Center">
                                     <base:Icon IconType="StatusCircleBlock" FontSize="12" VerticalAlignment="Center" Foreground="White"/>
                                     <TextBlock Text="已被忽略" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0"/>
@@ -40,7 +40,7 @@
                         <base:View Value="{Binding WebSite.Alias}" Condition="not empty">
                             <StackPanel>
                                 <TextBlock ToolTip="别名" Grid.Column="1" Text="{Binding WebSite.Alias}" FontSize="18" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"/>
-                                <TextBlock FontSize="12" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
+                                <TextBlock FontSize="12" Foreground="{DynamicResource SubTextBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
                                <Run ToolTip="域名" Text="{Binding WebSite.Domain}"></Run>
                                 <Run>(</Run>
                                <Run ToolTip="网站名称" Text="{Binding WebSite.Title}"></Run>
@@ -52,7 +52,7 @@
                         <base:View Value="{Binding WebSite.Alias}" Condition="empty">
                             <StackPanel>
                                 <TextBlock ToolTip="网站名称" Text="{Binding WebSite.Title}" FontSize="18" VerticalAlignment="Center" TextWrapping="WrapWithOverflow"/>
-                                <TextBlock ToolTip="域名" Text="{Binding WebSite.Domain}" FontSize="12" Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                                <TextBlock ToolTip="域名" Text="{Binding WebSite.Domain}" FontSize="12" Foreground="{DynamicResource SubTextBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0"/>
                             </StackPanel>
                         </base:View>
                        
@@ -145,7 +145,7 @@
                                                     <Grid>
                                                         <!--<Border BorderBrush="{Binding ElementName=Border,Path=BorderBrush}" BorderThickness="{Binding ElementName=Border,Path=BorderThickness}"  Background="{Binding ElementName=Border,Path=Background}" Margin="{Binding ElementName=Border,Path=Margin}" CornerRadius="{Binding ElementName=Border,Path=CornerRadius}">
                                                         <Border.Effect>
-                                                            <DropShadowEffect Color="#f3f3f3" BlurRadius="1" Direction="300" ShadowDepth="4" Opacity="0.15" RenderingBias="Performance" ></DropShadowEffect>
+                                                            <DropShadowEffect BlurRadius="16" ShadowDepth="0" Direction="0" Color="Black" Opacity="0.06" RenderingBias="Performance" ></DropShadowEffect>
                                                         </Border.Effect>
                                                     </Border>-->
 
@@ -186,13 +186,13 @@
                                                     <TextBlock FontSize="14" Foreground="{DynamicResource DefaultTextBrush}" Text="{Binding Url.Title}" TextWrapping="WrapWithOverflow"/>
                                                     <TextBlock Margin="0,2,0,0" Text="{Binding Url.Url}" Foreground="{DynamicResource SubTextBrush}" TextWrapping="WrapWithOverflow"/>
                                                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0" >
-                                                        <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="6" ToolTip="访问时间">
+                                                        <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="8" ToolTip="访问时间">
                                                             <Border.Background>
                                                                 <SolidColorBrush Color="{DynamicResource HoverBackgroundColor}" Opacity=".5"/>
                                                             </Border.Background>
                                                             <TextBlock Foreground="{DynamicResource SubTextBrush}" Text="{Binding LogTime,Converter={StaticResource DateTimeConverter}}" TextWrapping="WrapWithOverflow"/>
                                                         </Border>
-                                                        <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="6" Margin="5,0,0,0" ToolTip="浏览时长">
+                                                        <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="8" Margin="5,0,0,0" ToolTip="浏览时长">
                                                             <Border.Background>
                                                                 <SolidColorBrush Color="{DynamicResource ThemeColor}" Opacity=".2"/>
                                                             </Border.Background>

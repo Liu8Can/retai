@@ -18,7 +18,7 @@
                             <MouseBinding Gesture="LeftClick" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ImageSelect}}, Path=SelectCommand}"/>
                         </Border.InputBindings>
                         <Grid>
-                            <Border x:Name="Choose" Background="#f7f8fa" Padding="20" CornerRadius="10">
+                            <Border x:Name="Choose" Background="{DynamicResource CardBorder}" Padding="20" CornerRadius="10">
                                 <Grid HorizontalAlignment="Center">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
@@ -29,7 +29,7 @@
                                     <TextBlock Text="选择图片" Grid.Row="1" Margin="0,10,0,0"/>
                                 </Grid>
                             </Border>
-                            <Border x:Name="Img" BorderBrush="#f7f8fa" BorderThickness="1" CornerRadius="10" Padding="10">
+                            <Border x:Name="Img" BorderBrush="{DynamicResource CardBorder}" BorderThickness="1" CornerRadius="10" Padding="10">
                                 <base:Img URL="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:ImageSelect}}, Path=URL,Mode=TwoWay}" Width="{TemplateBinding ImageWidth}" Height="{TemplateBinding ImageHeight}"/>
                             </Border>
 

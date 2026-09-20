@@ -80,7 +80,7 @@
                                     <ColumnDefinition Width="auto"/>
 
                                 </Grid.ColumnDefinitions>
-                                <Border Width="40" Height="40" CornerRadius="14">
+                                <Border Width="40" Height="40" CornerRadius="8">
                                     <Border.Background>
                                         <LinearGradientBrush>
                                             <GradientStop Offset="0" Color="{DynamicResource ThemeColor}"/>
@@ -124,7 +124,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Border  Width="40" Height="40" CornerRadius="14">
+                                <Border  Width="40" Height="40" CornerRadius="8">
                                     <Border.Background>
                                         <LinearGradientBrush>
                                             <GradientStop Offset="0" Color="{DynamicResource ThemeColor}"/>
@@ -170,7 +170,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Border  Width="40" Height="40" CornerRadius="14">
+                                <Border  Width="40" Height="40" CornerRadius="8">
                                     <Border.Background>
                                         <LinearGradientBrush>
                                             <GradientStop Offset="0" Color="{DynamicResource ThemeColor}"/>
@@ -197,7 +197,7 @@
                                 <ImageBrush Stretch="Fill" x:Name="image" ImageSource="{Binding Top1App.IconFile}"/>
                             </Border.Background>
                         </Border>-->
-                                    <Border   CornerRadius="6" VerticalAlignment="Bottom" >
+                                    <Border   CornerRadius="8" VerticalAlignment="Bottom" >
                                         <base:View Value="{Binding Top1App}" Condition="not null">
                                             <base:Img  URL="{Binding Top1App.IconFile}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="16" Height="16"/>
                                         </base:View>
@@ -326,7 +326,7 @@
                                     <ColumnDefinition Width="auto"/>
 
                                 </Grid.ColumnDefinitions>
-                                <Border Width="40" Height="40" CornerRadius="14">
+                                <Border Width="40" Height="40" CornerRadius="8">
                                     <Border.Background>
                                         <LinearGradientBrush>
                                             <GradientStop Offset="0" Color="{DynamicResource ThemeColor}"/>
@@ -359,7 +359,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Border  Width="40" Height="40" CornerRadius="14">
+                                <Border  Width="40" Height="40" CornerRadius="8">
                                     <Border.Background>
                                         <LinearGradientBrush>
                                             <GradientStop Offset="0" Color="{DynamicResource ThemeColor}"/>
@@ -393,7 +393,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Border  Width="40" Height="40" CornerRadius="14">
+                                <Border  Width="40" Height="40" CornerRadius="8">
                                     <Border.Background>
                                         <LinearGradientBrush>
                                             <GradientStop Offset="0" Color="{DynamicResource ThemeColor}"/>

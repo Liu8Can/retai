@@ -50,7 +50,7 @@
                     <SolidColorBrush Color="{DynamicResource SettingPanelBgColor}" Opacity=".7"/>
                 </Border.Background>
                 <StackPanel>
-                    <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="6">
+                    <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="8">
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource HoverBackgroundColor}" Opacity=".5"/>
                         </Border.Background>
@@ -72,7 +72,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="6">
+                    <Border HorizontalAlignment="Left" Padding="10,5" CornerRadius="8">
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource ThemeColor}" Opacity=".2"/>
                         </Border.Background>

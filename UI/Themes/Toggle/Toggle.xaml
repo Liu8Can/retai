@@ -11,15 +11,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Toggle}">
-                    <Border x:Name="Border"  Background="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"  CornerRadius="4" Margin="{TemplateBinding Margin}">
+                    <Border x:Name="Border"  Background="{TemplateBinding Background}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"  CornerRadius="8" Margin="{TemplateBinding Margin}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <Border x:Name="Button" Grid.Column="1" Background="#f5f5f5" CornerRadius="10" Padding="5">
-                                <Border x:Name="Mark" Width="12" Height="12" CornerRadius="15" Background="#5d5d5d" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <Border x:Name="Button" Grid.Column="1" Background="{DynamicResource InputBoxBgBrush}" CornerRadius="10" Padding="5">
+                                <Border x:Name="Mark" Width="12" Height="12" CornerRadius="15" Background="{DynamicResource SubTextBrush}" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Border.RenderTransform>
                                         <TranslateTransform X="0"/>
                                     </Border.RenderTransform>
