@@ -17,8 +17,8 @@
             </Style>
 
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Tai;component/Resources/Themes/Light.xaml"/>
-                <ResourceDictionary Source="/Tai;component/Resources/Themes/Common.xaml"/>
+                <ResourceDictionary Source="/reTai;component/Resources/Themes/Light.xaml"/>
+                <ResourceDictionary Source="/reTai;component/Resources/Themes/Common.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

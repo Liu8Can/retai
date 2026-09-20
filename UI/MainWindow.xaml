@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI"
         mc:Ignorable="d"
         xmlns:ui="clr-namespace:UI.Controls.Window"
-        Title="Tai" Height="585" Width="815" MinHeight="585" MinWidth="814"
+        Title="reTai" Height="585" Width="815" MinHeight="585" MinWidth="814"
                   xmlns:control="clr-namespace:UI.Controls"
                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                   xmlns:Navigation="clr-namespace:UI.Controls.Navigation"
