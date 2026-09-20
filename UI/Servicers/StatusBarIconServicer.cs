@@ -128,7 +128,7 @@ namespace UI.Servicers
                 {
                     _statusBarIcon.Text = $"[{AppState.ProcessValue}%] Tai [{AppState.ActionText}]";
                 }
-                _statusBarIcon.Text = "Tai!";
+                _statusBarIcon.Text = "reTai!";
                 SetIcon();
             });
         }
@@ -151,7 +151,7 @@ namespace UI.Servicers
                         iconName = "tai32";
                         break;
                 }
-                Stream iconStream = Application.GetResourceStream(new Uri($"pack://application:,,,/Tai;component/Resources/Icons/{iconName}.ico")).Stream;
+                Stream iconStream = Application.GetResourceStream(new Uri($"pack://application:,,,/reTai;component/Resources/Icons/{iconName}.ico")).Stream;
                 _statusBarIcon.Icon = new Icon(iconStream);
             }
             catch (Exception ex)

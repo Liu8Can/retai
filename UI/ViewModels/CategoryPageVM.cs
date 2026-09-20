@@ -503,7 +503,7 @@ namespace UI.ViewModels
             else
             {
                 EditName = "";
-                EditIconFile = "pack://application:,,,/Tai;component/Resources/Emoji/(1).png";
+                EditIconFile = "pack://application:,,,/reTai;component/Resources/Emoji/(1).png";
                 EditColor = "#00FFAB";
                 EditIsDirectoryMath = false;
                 EditDirectories = new System.Collections.ObjectModel.ObservableCollection<string>();

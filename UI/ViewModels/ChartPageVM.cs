@@ -243,7 +243,7 @@ namespace UI.ViewModels
                 {
                     ID = 0,
                     Name = "未分类",
-                    IconFile = "pack://application:,,,/Tai;component/Resources/Icons/tai32.ico"
+                    IconFile = "pack://application:,,,/reTai;component/Resources/Icons/tai32.ico"
                 };
                 foreach (var item in list)
                 {
@@ -322,7 +322,7 @@ namespace UI.ViewModels
                 {
                     ID = 0,
                     Name = "未分类",
-                    IconFile = "pack://application:,,,/Tai;component/Resources/Icons/tai32.ico"
+                    IconFile = "pack://application:,,,/reTai;component/Resources/Icons/tai32.ico"
 
                 };
 
@@ -406,7 +406,7 @@ namespace UI.ViewModels
                 {
                     ID = 0,
                     Name = "未分类",
-                    IconFile = "pack://application:,,,/Tai;component/Resources/Icons/tai32.ico"
+                    IconFile = "pack://application:,,,/reTai;component/Resources/Icons/tai32.ico"
                 };
 
                 foreach (var item in list)
@@ -486,7 +486,7 @@ namespace UI.ViewModels
                 {
                     ID = 0,
                     Name = "未分类",
-                    IconFile = "pack://application:,,,/Tai;component/Resources/Icons/tai32.ico"
+                    IconFile = "pack://application:,,,/reTai;component/Resources/Icons/tai32.ico"
                 };
 
                 foreach (var item in list)
@@ -825,7 +825,7 @@ namespace UI.ViewModels
                 {
                     ID = 0,
                     Name = "未分类",
-                    IconFile = "pack://application:,,,/Tai;component/Resources/Icons/tai32.ico"
+                    IconFile = "pack://application:,,,/reTai;component/Resources/Icons/tai32.ico"
                 };
 
                 string[] colNames = { };

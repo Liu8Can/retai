@@ -73,8 +73,8 @@ namespace UI.Servicers
                 return;
             }
 
-            var themeDict = GetResourceDictionary($"pack://application:,,,/Tai;component/Resources/Themes/{themeName}.xaml");
-            var controlDict = GetResourceDictionary($"pack://application:,,,/Tai;component/Themes/Generic.xaml");
+            var themeDict = GetResourceDictionary($"pack://application:,,,/reTai;component/Resources/Themes/{themeName}.xaml");
+            var controlDict = GetResourceDictionary($"pack://application:,,,/reTai;component/Themes/Generic.xaml");
             if (themeDict == null || controlDict == null)
             {
                 return;

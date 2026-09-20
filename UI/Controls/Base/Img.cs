@@ -41,7 +41,7 @@ namespace UI.Controls.Base
         public static readonly DependencyProperty SrcProperty =
             DependencyProperty.Register("Src",
                 typeof(string),
-                typeof(Img), new PropertyMetadata("pack://application:,,,/Tai;component/Resources/Icons/defaultIcon.png", new PropertyChangedCallback(OnPropertyChanged)));
+                typeof(Img), new PropertyMetadata("pack://application:,,,/reTai;component/Resources/Icons/defaultIcon.png", new PropertyChangedCallback(OnPropertyChanged)));
 
 
 
@@ -74,7 +74,7 @@ namespace UI.Controls.Base
 
         private void Handle(string path)
         {
-            string defaultIconFile = "pack://application:,,,/Tai;component/Resources/Icons/defaultIcon.png";
+            string defaultIconFile = "pack://application:,,,/reTai;component/Resources/Icons/defaultIcon.png";
             if (string.IsNullOrEmpty(path))
             {
                 Src = defaultIconFile;
